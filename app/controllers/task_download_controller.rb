@@ -11,7 +11,7 @@ class TaskDownloadController < ApplicationController
 
     TarGzipWriter.wrap(response.stream) do |tar|
       task.solutions.each do |solution|
-        filename = "#{solution.user.faculty_number}.#{Language.extension}"
+        filename = "#{solution.user.id}-#{solution.user.faculty_number}.#{Language.extension}"
         code = solution.code
 
         tar.add_file_simple(filename, 0644, code.bytes.size) { |io| io.write(code) }
