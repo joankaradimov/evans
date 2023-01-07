@@ -14,7 +14,7 @@ class TaskDownloadController < ApplicationController
         filename = "#{solution.user.faculty_number}.#{Language.extension}"
         code = solution.code
 
-        tar.add_file_simple(filename, 0644, code.length) { |io| io.write(code) }
+        tar.add_file_simple(filename, 0644, code.bytes.size) { |io| io.write(code) }
       end
     end
   ensure
